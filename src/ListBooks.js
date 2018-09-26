@@ -1,10 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-
+import PropTypes from 'prop-types'
 
 class ListBooks extends React.Component{
 
-  static.propTypes = {
+  static propTypes = {
     books: PropTypes.array.isRequired
   }
 
