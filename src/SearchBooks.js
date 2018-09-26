@@ -3,6 +3,10 @@ import {Link} from 'react-router-dom'
 
 class SearchBooks extends React.Component{
 
+  static.propTypes = {
+    books: PropTypes.array.isRequired
+  }	
+
   render() {
 
   	let {books} = this.props

@@ -4,6 +4,10 @@ import {Link} from 'react-router-dom'
 
 class ListBooks extends React.Component{
 
+  static.propTypes = {
+    books: PropTypes.array.isRequired
+  }
+
   render() {
 
   	let {books} = this.props
