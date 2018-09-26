@@ -6,7 +6,7 @@ class SearchBooks extends React.Component{
 
   static propTypes = {
     books: PropTypes.array.isRequired
-  }	
+  }
 
   render() {
 
