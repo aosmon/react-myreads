@@ -22,14 +22,6 @@ class SearchBooks extends React.Component{
     this.setState({query: query.trim()});
   }
 
-  // updateSearchBooks = (book, shelf) => {
-  //   book.shelf = shelf
-  //   // this.setState((currentState)=>({
-  //   //   updatedBooks: currentState.updatedBooks.concat([book])
-  //   // }))
-  //   this.props.updateShelf(book, shelf);
-  // }
-
   render() {
 
     const {books} = this.props;
