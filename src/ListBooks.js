@@ -19,7 +19,7 @@ class ListBooks extends React.Component{
 
   render() {
 
-  	let {books} = this.props
+  	let {books, updateShelf} = this.props
   	      
     return (
       <div className="list-books">
@@ -32,6 +32,7 @@ class ListBooks extends React.Component{
               <BookShelf key={shelf.shelfTitle}
                 shelfTitle={shelf.shelfTitle} 
                 books={books.filter( book=> shelf.name===book.shelf)}
+                updateShelf={updateShelf}
               />
             ))}
           </div>

@@ -9,34 +9,50 @@ class SearchBooks extends React.Component{
 
   state={
     query: '',
-    books: [],
+    updatedBooks: [],
     searchResults: [],
     searchError: false
   };
 
   static propTypes = {
-    books: PropTypes.array.isRequired
+    books: PropTypes.array.isRequired,
+    updateSearchBooks: PropTypes.func.isRequired
   }
 
   updateQuery = (query)=>{
-      this.setState({query: query.trim()});
+    this.setState({query: query.trim()});
   }
+
+  // updateSearchBooks = (book, shelf) => {
+  //   book.shelf = shelf
+  //   // this.setState((currentState)=>({
+  //   //   updatedBooks: currentState.updatedBooks.concat([book])
+  //   // }))
+  //   this.props.updateShelf(book, shelf);
+  // }
 
   render() {
 
-      const {books} = this.props;
-      const {query, searchResults, searchError} = this.state;
+    const {books} = this.props;
+    const {query, searchResults, searchError} = this.state;
 
-      if(this.state.query){
-        BooksAPI.search(query, 20).then((foundBooks)=>{
-            if(foundBooks.length>0){
-              this.setState({searchResults: foundBooks, searchError: false});
-            }else {
-              this.setState({searchResults: [], searchError: true});
-            }
-        });
-        searchResults.sort(sortBy('title'));
-      }
+    if(this.state.query){
+      BooksAPI.search(query, 20).then((foundBooks)=>{
+          if(foundBooks.length){
+              foundBooks.map((book) => {
+                const userBook = books.find((userBook)=>(userBook.id===book.id));
+                if(userBook){
+                  book.shelf = userBook.shelf;
+                }
+                return book;
+              });
+            this.setState({searchResults: foundBooks, searchError: false});
+          }else {
+            this.setState({searchResults: [], searchError: true});
+          }
+      });
+      searchResults.sort(sortBy('title'));
+    }
 
     return (
 	/*
@@ -67,7 +83,10 @@ class SearchBooks extends React.Component{
               <ol className="books-grid">
                {searchResults.map((book) => (
                   <li key={book.id}>
-                    <Book book={book} books={books}/>
+                    <Book
+                      book={book}
+                      updateShelf={this.props.updateShelf}
+                    />
                   </li>
                 ))}
               </ol>
