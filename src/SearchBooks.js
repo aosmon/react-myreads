@@ -9,7 +9,6 @@ class SearchBooks extends React.Component{
 
   state={
     query: '',
-    updatedBooks: [],
     searchResults: [],
     searchError: false
   };
@@ -24,7 +23,7 @@ class SearchBooks extends React.Component{
 
   render() {
 
-    const {books} = this.props;
+    const {books, updateShelf} = this.props;
     const {query, searchResults, searchError} = this.state;
 
     if(this.state.query){
@@ -76,7 +75,7 @@ class SearchBooks extends React.Component{
                   <li key={book.id}>
                     <Book
                       book={book}
-                      updateShelf={this.props.updateShelf}
+                      updateShelf={updateShelf}
                     />
                   </li>
                 ))}
