@@ -28,19 +28,20 @@ class SearchBooks extends React.Component{
 
     if(this.state.query){
       BooksAPI.search(query, 20).then((foundBooks)=>{
-          if(foundBooks.length){
-              foundBooks.map((book) => {
-                const userBook = books.find((userBook)=>(userBook.id===book.id));
-                if(userBook){
-                  book.shelf = userBook.shelf;
-                }
-                return book;
-              });
-            this.setState({searchResults: foundBooks, searchError: false});
-          }else {
-            this.setState({searchResults: [], searchError: true});
-          }
-      });
+        //match found books with existing books' shelves
+        if(foundBooks.length){
+            let matchedBooks = foundBooks.map((book) => {
+              const userBook = books.find((userBook)=>(userBook.id===book.id));
+              if(userBook){
+                book.shelf = userBook.shelf;
+              }
+              return book;
+            });
+          this.setState({searchResults: matchedBooks, searchError: false});
+        }else {
+          this.setState({searchResults: [], searchError: true});
+        }
+    });
       searchResults.sort(sortBy('title'));
     }
 
