@@ -6,6 +6,9 @@ A bookshelf app that allows to select and categorize books into read, currently 
 
 - Clone or download the repo.
 - Open a terminal in project directory.
+- Install Node.js. You can download it here: https://www.npmjs.com/get-npm
+- Install npm
+- `npm install`
 - Install all project dependencies with npm install
   - `npm install --save react-router-dom`
   - `npm install --save escape-string-regexp sort-by`
