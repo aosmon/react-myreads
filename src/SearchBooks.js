@@ -10,7 +10,7 @@ class SearchBooks extends React.Component{
   state={
     query: '',
     searchResults: [],
-    searchError: false
+    searchError: false,
   };
 
   static propTypes = {
@@ -18,7 +18,7 @@ class SearchBooks extends React.Component{
   }
 
   updateQuery = (query)=>{
-    this.setState({query: query.trim()});
+    this.setState({query: query});
   }
 
   render() {
@@ -26,7 +26,7 @@ class SearchBooks extends React.Component{
     const {books, updateShelf} = this.props;
     const {query, searchResults, searchError} = this.state;
 
-    if(this.state.query){
+    if(query){
       BooksAPI.search(query, 20).then((foundBooks)=>{
         //match found books with existing books' shelves
         if(foundBooks.length){
@@ -65,7 +65,7 @@ class SearchBooks extends React.Component{
           </div>
         </div>
 
-        {searchResults.length>0 && (            
+        {query && searchResults.length>0 && (            
           <div className="search-books-results">
               <div className='showing-books'>
                   <h3>{searchResults.length} items found</h3>
