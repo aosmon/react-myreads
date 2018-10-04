@@ -32,9 +32,7 @@ class SearchBooks extends React.Component{
         if(foundBooks.length){
             let matchedBooks = foundBooks.map((book) => {
               const userBook = books.find((userBook)=>(userBook.id===book.id));
-              if(userBook){
-                book.shelf = userBook.shelf;
-              }
+              book.shelf = userBook ? userBook.shelf : 'none';
               return book;
             });
           this.setState({searchResults: matchedBooks, searchError: false});
