@@ -2,18 +2,18 @@ import React from 'react';
 import Book from './Book';
 import PropTypes from 'prop-types';
 
-const Shelf = (props) => {
+const Shelf = ({ shelfTitle, books, updateShelf }) => {
 
   return (
       <div className="bookshelf">
-        <h2 className="bookshelf-title">{props.shelfTitle}</h2>
+        <h2 className="bookshelf-title">{shelfTitle}</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
-            {props.books.map((book) => (
+            {books.map((book) => (
               <li key={book.id}>
                 <Book
                   book={book}
-                  updateShelf={props.updateShelf}
+                  updateShelf={updateShelf}
                 />
               </li>
 
