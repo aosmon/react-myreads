@@ -17,18 +17,26 @@ class SearchBooks extends React.Component{
     books: PropTypes.array.isRequired,
   }
 
-  updateQuery = (query)=>{
-    this.setState({query: query});
+  componentWillMount() {
+    this.timer = null;
   }
 
-  render() {
 
-    const {books, updateShelf} = this.props;
-    const {query, searchResults, searchError} = this.state;
+  updateQuery = (query)=>{
+    this.setState({query: query});
+    //Wait for user to stop typing and then fetch data
+    clearTimeout(this.timer);
+    this.timer = setTimeout(this.fetchBooks, 500);
+  }
+
+  fetchBooks = () => {
+    const {books} = this.props;
+    const {query, searchResults} = this.state;
 
     if(query){
       BooksAPI.search(query, 20).then((foundBooks)=>{
         //match found books with existing books' shelves
+        //set to 'none' if books don't match to users'
         if(foundBooks.length){
             let matchedBooks = foundBooks.map((book) => {
               const userBook = books.find((userBook)=>(userBook.id===book.id));
@@ -42,6 +50,13 @@ class SearchBooks extends React.Component{
     });
       searchResults.sort(sortBy('title'));
     }
+
+  }
+
+  render() {
+
+    const {updateShelf} = this.props;
+    const {query, searchResults, searchError} = this.state;
 
     return (
 	/*
