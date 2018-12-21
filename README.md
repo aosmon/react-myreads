@@ -2,8 +2,8 @@
 
 A bookshelf app that allows to select and categorize books into read, currently reading, and want to read. The project emphasizes using React to build the application and provides an API server and client library utilized to interact with the application.
 
-<img width="1280" alt="myreads1" src="https://user-images.githubusercontent.com/26148396/50356858-c04f6880-0521-11e9-9158-657bda6c4d99.png">
-<img width="1280" alt="myreads2" src="https://user-images.githubusercontent.com/26148396/50356862-c5141c80-0521-11e9-92ef-53f181249727.png">
+<img width="1280" alt="myreads1" src="https://user-images.githubusercontent.com/26148396/50357089-b37f4480-0522-11e9-9988-9865e86d5d1b.png">
+<img width="1280" alt="myreads2" src="https://user-images.githubusercontent.com/26148396/50357092-b7ab6200-0522-11e9-9996-3a8bb3938497.png">
 
 ## Installation and Launch Instructions
 
